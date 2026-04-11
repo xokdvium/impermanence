@@ -74,6 +74,7 @@ let
       options = [ "bind" "X-fstrim.notrim" ]
         ++ optional hideMount "x-gvfs-hide";
       depends = [ persistentStoragePath ];
+      fsType = "auto";
     };
   };
 
