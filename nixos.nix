@@ -785,7 +785,7 @@ in
             '';
           in
           {
-            systemd.services = mkIf config.boot.initrd.systemd.enable {
+            systemd.services = {
               create-needed-for-boot-dirs = {
                 wantedBy = [ "initrd-root-device.target" ];
                 requires = deviceUnits;
@@ -796,8 +796,6 @@ in
                 script = createNeededForBootDirs;
               };
             };
-            postResumeCommands = mkIf (!config.boot.initrd.systemd.enable)
-              (mkAfter createNeededForBootDirs);
           };
       }
 
