@@ -18,13 +18,13 @@ let
     triesLeft=${toString tries}
     if ${mount} | grep -F ${mountPoint}' ' >/dev/null; then
         while (( triesLeft > 0 )); do
-            if fusermount -u ${mountPoint}; then
+            if fusermount3 -u ${mountPoint}; then
                 break
             else
                 (( triesLeft-- ))
                 if (( triesLeft == 0 )); then
                     echo "Couldn't perform regular unmount of ${mountPoint}. Attempting lazy unmount."
-                    fusermount -uz ${mountPoint}
+                    fusermount3 -uz ${mountPoint}
                 else
                     sleep ${toString sleep}
                 fi
